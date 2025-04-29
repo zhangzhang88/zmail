@@ -52,7 +52,9 @@
     "refreshFailed": "Failed to change address",
     "customize": "Customize Address",
     "notFound": "Mailbox not found or expired",
-    "creatingNew": "Creating new mailbox..."
+    "creatingNew": "Creating new mailbox...",
+    "switch": "Switch Mailbox",
+    "savedMailboxes": "Saved Mailboxes"
   },
   "email": {
     "inbox": "Inbox",

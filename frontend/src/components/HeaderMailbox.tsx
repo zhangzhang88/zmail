@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createRandomMailbox, createCustomMailbox } from '../utils/api';
+import MailboxSwitcher from './MailboxSwitcher';
 
 interface HeaderMailboxProps {
   mailbox: Mailbox | null;
@@ -290,6 +291,13 @@ const HeaderMailbox: React.FC<HeaderMailboxProps> = ({
                 </select>
               </code>
               
+              {/* 添加邮箱切换组件 */}
+              <MailboxSwitcher 
+                currentMailbox={mailbox}
+                onSwitchMailbox={onMailboxChange}
+                domain={selectedDomain}
+              />
+              
               <div className="relative">
               <button 
                 onClick={copyToClipboard}
@@ -347,10 +355,19 @@ const HeaderMailbox: React.FC<HeaderMailboxProps> = ({
           </div>
           
           {/* 移动版显示 */}
-          <div className="flex md:hidden items-center flex-col">
+          <div className="flex sm:hidden items-center flex-col">
             {/* 邮箱地址和操作按钮 */}
             <div className="flex items-center">
               {renderMobileAddress()}
+              
+              {/* 添加移动版邮箱切换组件 */}
+              <div className="transform scale-75 origin-right -mr-1">
+                <MailboxSwitcher 
+                  currentMailbox={mailbox}
+                  onSwitchMailbox={onMailboxChange}
+                  domain={selectedDomain}
+                />
+              </div>
               
               <div className="relative">
               <button 
@@ -372,41 +389,43 @@ const HeaderMailbox: React.FC<HeaderMailboxProps> = ({
               </div>
             </div>
             
-            <div className="relative">
-              <button
-                onClick={handleRefreshMailbox}
-                  className={`w-6 h-6 ${refreshButtonClass}`}
-                disabled={isActionLoading}
-                  title={t('mailbox.refresh')}
-              >
-                  <i className="fas fa-sync-alt text-xs"></i>
-              </button>
-              
-                {/* 更新成功提示 */}
-              {showRefreshSuccess && (
-                  <div className="absolute top-7 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground text-xs py-1 px-2 rounded shadow-lg whitespace-nowrap z-10">
-                  {t('mailbox.refreshSuccess')}
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-primary rotate-45"></div>
-                </div>
-              )}
-            </div>
-    
-          <button
-            onClick={() => setIsCustomMode(true)}
-                className={`w-6 h-6 ${customizeButtonClass}`}
-            disabled={isActionLoading}
-                title={t('mailbox.customize')}
-          >
-                <i className="fas fa-edit text-xs"></i>
-          </button>
-    </div>
+            <div className="flex items-center">
+              <div className="relative">
+                <button
+                  onClick={handleRefreshMailbox}
+                    className={`w-6 h-6 ${refreshButtonClass}`}
+                  disabled={isActionLoading}
+                    title={t('mailbox.refresh')}
+                >
+                    <i className="fas fa-sync-alt text-xs"></i>
+                </button>
+                
+                  {/* 更新成功提示 */}
+                {showRefreshSuccess && (
+                    <div className="absolute top-7 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground text-xs py-1 px-2 rounded shadow-lg whitespace-nowrap z-10">
+                    {t('mailbox.refreshSuccess')}
+                      <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-primary rotate-45"></div>
+                  </div>
+                )}
+              </div>
       
-      {/* 错误信息显示 */}
-      {(copyError || refreshError) && (
-              <div className="text-red-500 text-xs mt-1">
-          {copyError || refreshError}
-        </div>
-            )}
+              <button
+                onClick={() => setIsCustomMode(true)}
+                    className={`w-6 h-6 ${customizeButtonClass}`}
+                disabled={isActionLoading}
+                    title={t('mailbox.customize')}
+              >
+                    <i className="fas fa-edit text-xs"></i>
+              </button>
+            </div>
+          </div>
+      
+          {/* 错误信息显示 */}
+          {(copyError || refreshError) && (
+                <div className="text-red-500 text-xs mt-1">
+              {copyError || refreshError}
+            </div>
+          )}
         </>
       )}
     </div>
