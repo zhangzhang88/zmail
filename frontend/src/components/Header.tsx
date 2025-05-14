@@ -20,15 +20,15 @@ const Header: React.FC<HeaderProps> = ({
   const { t } = useTranslation();
   
   return (
-    <header className="border-b">
+    <header className="border-b shadow-sm bg-white/80 backdrop-blur-sm sticky top-0 z-50">
       <Container>
-        <div className="flex items-center justify-between py-3">
-          <Link to="/" className="text-2xl font-bold">
+        <div className="flex items-center justify-between py-4">
+          <Link to="/" className="text-2xl font-bold hover:text-primary transition-colors">
             {t('app.title')}
           </Link>
           
           {mailbox && (
-            <div className="flex items-center bg-muted/70 rounded-md px-3 py-1.5">
+            <div className="flex items-center bg-muted/50 rounded-lg px-4 py-2 shadow-sm hover:bg-muted/60 transition-colors">
               <HeaderMailbox 
                 mailbox={mailbox} 
                 onMailboxChange={onMailboxChange}
@@ -36,17 +36,17 @@ const Header: React.FC<HeaderProps> = ({
                 domains={EMAIL_DOMAINS}
                 isLoading={isLoading}
               />
-              <div className="ml-3 pl-3 border-l border-muted-foreground/20 flex items-center">
+              <div className="ml-4 pl-4 border-l border-muted-foreground/20 flex items-center gap-2">
                 <LanguageSwitcher />
                 <a
-                  href="https://github.com/zhangzhang88/zmail"
+                  href="https://github.com/zhangzhang88"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 flex items-center justify-center rounded-md transition-all duration-200 hover:bg-primary/20 hover:text-primary hover:scale-110 ml-1"
+                  className="w-9 h-9 flex items-center justify-center rounded-lg transition-all duration-200 hover:bg-primary/20 hover:text-primary hover:scale-105"
                   aria-label="GitHub"
                   title="GitHub"
                 >
-                  <i className="fab fa-github text-base"></i>
+                  <i className="fab fa-github text-lg"></i>
                 </a>
               </div>
             </div>
