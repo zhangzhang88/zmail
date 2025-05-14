@@ -13,31 +13,12 @@ const Footer: React.FC = () => {
           <p className="mb-2">© {year} {t('app.title')}</p>
           <div className="flex justify-center items-center space-x-4">
             <a 
-              href="https://zaunist.com" 
+              href="https://ztr8.online" 
               target="_blank" 
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors"
             >
-              <i className="fas fa-blog mr-1"></i>
-              {t('common.blog')}
-            </a>
-            <a 
-              href="https://www.youtube.com/@zaunist" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:text-primary transition-colors"
-            >
-              <i className="fab fa-youtube mr-1"></i>
-              {t('common.youtube')}
-            </a>
-            <a 
-              href="https://xugou.mdzz.uk" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:text-primary transition-colors"
-            >
-              <i className="fas fa-chart-line mr-1"></i>
-              {t('common.xugouMonitor')}
+              未来已到
             </a>
           </div>
         </div>
